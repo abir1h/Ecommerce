@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:active_ecommerce_flutter/helpers/shimmer_helper.dart';
+import 'package:active_ecommerce_flutter/screens/bigzloot-json.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shimmer/shimmer.dart';
@@ -8,7 +9,8 @@ import '../my_theme.dart';
 
 class SingleBigzloot extends StatefulWidget {
   final dynamic id;
-  SingleBigzloot({this.id});
+  final dynamic itemIndex;
+  SingleBigzloot({this.id, this.itemIndex});
 
   @override
   State<SingleBigzloot> createState() => _SingleBigzlootState();
@@ -158,42 +160,34 @@ class _SingleBigzlootState extends State<SingleBigzloot> {
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
-                              color: Colors.grey.shade300,
+                              color: Colors.white,
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
 
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.support_agent,
-                                      color: Colors.blue,
-                                    ),
-                                    SizedBox(width: 5,),
-                                    Text(
-                                      "Contact",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold
-                                      ),
-                                    ),
-                                  ],
+                                Text(
+                                  "Contact",
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    color: Colors.black45
+                                  ),
                                 ),
-
                                 SizedBox(height: 5,),
                                 Row(
                                   children: [
                                     Icon(
                                       Icons.call,
-                                      color: Colors.blue,
+                                        color: Colors.black45
                                     ),
                                     SizedBox(width: 5,),
                                     Text(
                                       "${data["phone"]}",
                                       style: TextStyle(
-                                          fontSize: 18
+                                          fontSize: 18,
+                                          color: Colors.black45
                                       ),
                                     )
                                   ],
@@ -204,43 +198,122 @@ class _SingleBigzlootState extends State<SingleBigzloot> {
                           ),
 
                           SizedBox(height: 20,),
+                      Container(
+                        width: width,
+                        padding: EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: Colors.white,
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.watch_later_outlined,
+                                color: Colors.deepPurpleAccent
+                            ),
+                            SizedBox(width: 5,),
+                            Text(
+                              "Opening Hours",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                color: Colors.black54
+                              ),
+                            ),
+                          ],
+                        ),
+                      ), SizedBox(height: 20,),
                           Container(
                             width: width,
+                            height: 500,
                             padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(5),
-                              color: Colors.grey.shade300,
+                              //color: Colors.white,
                             ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.watch_later_outlined,
-                                      color: MyTheme.accent_color,
-                                    ),
-                                    SizedBox(width: 5,),
-                                    Text(
-                                      "Opening Hours",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold
-                                      ),
-                                    ),
-                                  ],
-                                ),
-
-                                SizedBox(height: 10,),
-                                Text(
-                                  "Monday: 09:45 AM - PM \n Tuesday: 09:45 AM - PM \n Wednesday: 09:45 AM - PM \n Friday: 09:45 AM - PM \n Saturday: 09:45 AM - PM \n Sunday: 09:45 AM - PM \n ",
-
-                                  style: TextStyle(
-                                      fontSize: 18
-                                  ),
-                                )
-                              ],
+                            child: ListView.builder(
+                              physics: NeverScrollableScrollPhysics(),
+                             itemCount: BigzlootJson.bigzlootTime[widget.itemIndex].length,
+                              itemBuilder: (_, index){
+                                var data =  BigzlootJson.bigzlootTime[widget.itemIndex][index];
+                                print(data);
+                               return Row(
+                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                 children: [
+                                   Container(
+                                     width: 50,
+                                     height: 50,
+                                     margin: EdgeInsets.only(bottom: 10),
+                                     decoration: BoxDecoration(
+                                       borderRadius: BorderRadius.circular(100),
+                                       color: Colors.blue,
+                                     ),
+                                     child: Center(
+                                       child: Text("${data["day"]}",
+                                         style: TextStyle(
+                                           color: Colors.white,
+                                         ),
+                                       ),
+                                     ),
+                                   ),
+                                   Container(
+                                     width: 100,
+                                     height: 50,
+                                     padding: EdgeInsets.all(10),
+                                     decoration: BoxDecoration(
+                                       borderRadius: BorderRadius.circular(5),
+                                       color: Colors.white,
+                                       boxShadow: [
+                                         BoxShadow(
+                                             spreadRadius: 1,
+                                             blurRadius: 10,
+                                             offset: Offset(0,2),
+                                             color: Colors.grey.shade200
+                                         )
+                                       ],
+                                     ),
+                                     child: Center(
+                                       child: Text(
+                                         "${data["open"]}",
+                                         style: TextStyle(
+                                             fontSize: 15,
+                                             fontWeight: FontWeight.w600
+                                         ),
+                                       ),
+                                     ),
+                                   ),
+                                   Icon(
+                                     Icons.remove,
+                                   ),
+                                   Container(
+                                     width: 100,
+                                     height: 50,
+                                     padding: EdgeInsets.all(10),
+                                     decoration: BoxDecoration(
+                                       borderRadius: BorderRadius.circular(5),
+                                       color: Colors.white,
+                                       boxShadow: [
+                                         BoxShadow(
+                                             spreadRadius: 1,
+                                             blurRadius: 10,
+                                             offset: Offset(0,2),
+                                             color: Colors.grey.shade200
+                                         )
+                                       ],
+                                     ),
+                                     child: Center(
+                                       child: Text(
+                                         "${data["close"]}",
+                                         style: TextStyle(
+                                             fontSize: 15,
+                                             fontWeight: FontWeight.w600
+                                         ),
+                                       ),
+                                     ),
+                                   ),
+                                 ],
+                               );
+                              },
                             ),
                           )
                         ],

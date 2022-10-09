@@ -109,7 +109,7 @@ class _OtpState extends State<Otp> {
                       width: 75,
                       height: 75,
                       child:
-                          Image.asset('assets/login_registration_form_logo.png'),
+                          Image.asset('assets/app_logo.png'),
                     ),
                   ),
                   Padding(

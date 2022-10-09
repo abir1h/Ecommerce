@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "598215006242",
-    "project_id": "bigzbeecommerceapp",
-    "storage_bucket": "bigzbeecommerceapp.appspot.com"
+    "project_number": "96733003763",
+    "project_id": "bigzbe-239b0",
+    "storage_bucket": "bigzbe-239b0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:598215006242:android:45c87c12f1f2ffeeb5927b",
+        "mobilesdk_app_id": "1:96733003763:android:4b0c66e6f3a8fea7d05c86",
         "android_client_info": {
           "package_name": "app.bigzbe.com"
         }
       },
       "oauth_client": [
         {
-          "client_id": "598215006242-uvkg317m65ekd2ghg08avevnrisa6hfr.apps.googleusercontent.com",
+          "client_id": "96733003763-8a381ma2qofqminf7ihqh80eoppptocf.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDtFwk-CH20HfE1P9_9upN99F6TKv2qtOk"
+          "current_key": "AIzaSyAYRf5TT56Xhi050MKFP1KLKlojj53gGPk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "598215006242-uvkg317m65ekd2ghg08avevnrisa6hfr.apps.googleusercontent.com",
+              "client_id": "96733003763-8a381ma2qofqminf7ihqh80eoppptocf.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

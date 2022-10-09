@@ -308,6 +308,7 @@ class _RegistrationState extends State<Registration> {
                               ],
                             ),
                           ),
+
                         Padding(
                           padding: const EdgeInsets.only(bottom: 4.0),
                           child: Text(

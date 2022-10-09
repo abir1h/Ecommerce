@@ -306,6 +306,10 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                           ),
                         ]),
                       ),
+
+                      //===============================================//
+                      //===============Feature category ================//
+                      //===============================================//
                       SliverToBoxAdapter(
                         child: Padding(
                           padding: const EdgeInsets.fromLTRB(
@@ -760,12 +764,12 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
     }
   }
 
+  //top category section with bigloot
   buildHomeMenuRow(BuildContext context) {
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           GestureDetector(
             onTap: () {
@@ -821,7 +825,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border:
-                              Border.all(color: MyTheme.light_grey, width: 1)),
+                          Border.all(color: MyTheme.light_grey, width: 1)),
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Image.asset("assets/top_categories.png"),
@@ -859,7 +863,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border:
-                              Border.all(color: MyTheme.light_grey, width: 1)),
+                          Border.all(color: MyTheme.light_grey, width: 1)),
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Image.asset("assets/brands.png"),
@@ -892,7 +896,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                       decoration: BoxDecoration(
                           shape: BoxShape.circle,
                           border:
-                              Border.all(color: MyTheme.light_grey, width: 1)),
+                          Border.all(color: MyTheme.light_grey, width: 1)),
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Image.asset("assets/top_sellers.png"),
@@ -908,74 +912,9 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
               ),
             ),
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return TodaysDealProducts();
-              }));
-            },
-            child: Container(
-              height: 100,
-              width: MediaQuery.of(context).size.width / 5 - 4,
-              child: Column(
-                children: [
-                  Container(
-                      height: 57,
-                      width: 57,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border:
-                              Border.all(color: MyTheme.light_grey, width: 1)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Image.asset("assets/todays_deal.png"),
-                      )),
-                  Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: Text(AppLocalizations.of(context).home_screen_todays_deal,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Color.fromRGBO(132, 132, 132, 1),
-                              fontWeight: FontWeight.w300))),
-                ],
-              ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return FlashDealList();
-              }));
-            },
-            child: Container(
-              height: 100,
-              width: MediaQuery.of(context).size.width / 5 - 4,
-              child: Column(
-                children: [
-                  Container(
-                      height: 57,
-                      width: 57,
-                      decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          border:
-                              Border.all(color: MyTheme.light_grey, width: 1)),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Image.asset("assets/flash_deal.png"),
-                      )),
-                  Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: Text(AppLocalizations.of(context).home_screen_flash_deal,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Color.fromRGBO(132, 132, 132, 1),
-                              fontWeight: FontWeight.w300))),
-                ],
-              ),
-            ),
-          )
+
         ],
-      ),
+      )
     );
   }
 

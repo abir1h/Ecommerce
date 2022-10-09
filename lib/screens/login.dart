@@ -112,7 +112,7 @@ class _LoginState extends State<Login> {
         }
       }
 
-      //push norification ends
+      //push notification ends
 
       Navigator.push(context, MaterialPageRoute(builder: (context) {
         return Main();
@@ -158,9 +158,10 @@ class _LoginState extends State<Login> {
 
   onPressedGoogleLogin() async {
     try {
+      print("dasfdsffdfasfasdfasdf");
       final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
 
-      print(googleUser.toString());
+      print("Google login user info =========== ${googleUser.toString()}");
 
       GoogleSignInAuthentication googleSignInAuthentication =
           await googleUser.authentication;
@@ -174,6 +175,7 @@ class _LoginState extends State<Login> {
         ToastComponent.showDialog(loginResponse.message, context,
             gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
       } else {
+        print("dasfdsffdfasfasdfasdf");
         ToastComponent.showDialog(loginResponse.message, context,
             gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
         AuthHelper().setUserData(loginResponse);
@@ -500,7 +502,7 @@ class _LoginState extends State<Login> {
                         ),
                         Visibility(
                           visible:
-                              allow_google_login.$ || allow_facebook_login.$,
+                          allow_google_login.$ || allow_facebook_login.$,
                           child: Padding(
                             padding: const EdgeInsets.only(top: 20.0),
                             child: Center(
@@ -527,7 +529,7 @@ class _LoginState extends State<Login> {
                                       onTap: () {
                                         onPressedGoogleLogin();
                                       },
-                                      child: Container(
+                                       child: Container(
                                         width: 28,
                                         child: Image.asset(
                                             "assets/google_logo.png"),

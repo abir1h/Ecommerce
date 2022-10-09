@@ -94,8 +94,9 @@ class _BigzlootState extends State<Bigzloot> {
                   return ListView.builder(
                     itemCount: snapshot.data.length,
                       itemBuilder: (_, index){
+                      print(snapshot.data[index]);
                         return InkWell(
-                          onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>SingleBigzloot(id: snapshot.data[index]["id"].toString(),))),
+                          onTap: ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>SingleBigzloot(id: snapshot.data[index]["id"].toString(), itemIndex: index,))),
                           child: Container(
                             margin: EdgeInsets.only(left: 10, right: 10, bottom: 10),
                             padding: EdgeInsets.only(left: 20, right: 20, top: 10, bottom: 10),
