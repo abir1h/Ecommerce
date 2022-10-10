@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "96733003763-m23lcdbgkpmip3s2b5np3sh1unp7tdmo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "app.bigzbe.com",
+            "certificate_hash": "a07301a82847423a947f917f97aa1740d6a39f72"
+          }
+        },
+        {
           "client_id": "96733003763-8a381ma2qofqminf7ihqh80eoppptocf.apps.googleusercontent.com",
           "client_type": 3
         }

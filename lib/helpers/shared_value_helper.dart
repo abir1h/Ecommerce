@@ -70,7 +70,7 @@ final SharedValue<bool> otp_addon_installed = SharedValue(
 
 // social login start
 final SharedValue<bool> allow_google_login = SharedValue(
-  value: false,  // initial value
+  value: true,  // initial value
   key: "allow_google_login", // disk storage key for shared_preferences
 );
 

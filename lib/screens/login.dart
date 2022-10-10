@@ -2,6 +2,7 @@ import 'package:active_ecommerce_flutter/app_config.dart';
 import 'package:active_ecommerce_flutter/my_theme.dart';
 import 'package:active_ecommerce_flutter/other_config.dart';
 import 'package:active_ecommerce_flutter/social_config.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:active_ecommerce_flutter/custom/input_decorations.dart';
@@ -155,39 +156,40 @@ class _LoginState extends State<Login> {
       print(facebookLogin.message);
     }
   }
+  Future googleLogin() async {
+    final googleSignIn = GoogleSignIn();
 
-  onPressedGoogleLogin() async {
-    try {
+    await googleSignIn.signOut();
+    final googleUser = await googleSignIn.signIn();
+
+    print('1234');
+    if (googleUser == null) return;
+
+    final googleAuth = await googleUser.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+    print('tesst');
+    print(credential);
+
+    await FirebaseAuth.instance.signInWithCredential(credential);
+    var loginResponse = await AuthRepository().getSocialLoginResponse(
+        "google", googleUser.displayName, googleUser.email, googleUser.id,
+        access_token: googleAuth.accessToken);
+
+    if (loginResponse.result == false) {
+      ToastComponent.showDialog(loginResponse.message, context,
+          gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+    } else {
       print("dasfdsffdfasfasdfasdf");
-      final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();
-
-      print("Google login user info =========== ${googleUser.toString()}");
-
-      GoogleSignInAuthentication googleSignInAuthentication =
-          await googleUser.authentication;
-      String accessToken = googleSignInAuthentication.accessToken;
-
-      var loginResponse = await AuthRepository().getSocialLoginResponse(
-          "google", googleUser.displayName, googleUser.email, googleUser.id,
-          access_token: accessToken);
-
-      if (loginResponse.result == false) {
-        ToastComponent.showDialog(loginResponse.message, context,
-            gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
-      } else {
-        print("dasfdsffdfasfasdfasdf");
-        ToastComponent.showDialog(loginResponse.message, context,
-            gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
-        AuthHelper().setUserData(loginResponse);
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return Main();
-        }));
-      }
-      GoogleSignIn().disconnect();
-    } on Exception catch (e) {
-      print("error is ....... $e");
-      // TODO
+      ToastComponent.showDialog(loginResponse.message, context,
+          gravity: Toast.CENTER, duration: Toast.LENGTH_LONG);
+      AuthHelper().setUserData(loginResponse);
+      Navigator.push(context, MaterialPageRoute(builder: (context) {
+        return Main();
+      }));
     }
+
   }
 
   onPressedTwitterLogin() async {
@@ -527,7 +529,8 @@ class _LoginState extends State<Login> {
                                     visible: allow_google_login.$,
                                     child: InkWell(
                                       onTap: () {
-                                        onPressedGoogleLogin();
+                                        googleLogin();
+                                        // onPressedGoogleLogin();
                                       },
                                        child: Container(
                                         width: 28,
